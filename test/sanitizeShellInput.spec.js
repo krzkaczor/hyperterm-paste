@@ -1,7 +1,7 @@
 const expect = require('chai').expect
 const sanitizeShellInput = require('../src/sanitizeShellInput')
 
-describe('Sanitze shell input', function () {
+describe('Sanitize shell input', function () {
   it('should remove any leading $', function () {
     expect(sanitizeShellInput('$ test')).to.be.eq('test')
   })
