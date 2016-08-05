@@ -1,6 +1,6 @@
 {
   "name": "hyperterm-paste",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Makes pasting into hyperterm safe",
   "main": "src/index.js",
   "scripts": {
@@ -26,6 +26,8 @@
     "mocha": "3.0.0"
   },
   "standard": {
-    "env": ["mocha"]
+    "env": [
+      "mocha"
+    ]
   }
 }
