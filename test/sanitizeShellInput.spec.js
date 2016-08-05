@@ -14,6 +14,10 @@ describe('Sanitize shell input', function () {
     expect(sanitizeShellInput('$test\n$test2')).to.be.eq('test && test2')
   })
 
+  it('should not remove $ in the middle of the input', function () {
+    expect(sanitizeShellInput('t$est\n test"$"2')).to.be.eq('t$est && test"$"2')
+  })
+
   it('should remove leading spaces on each line of multiline inputs', function () {
     expect(sanitizeShellInput(' test\n   test')).to.be.eq('test && test')
   })
