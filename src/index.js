@@ -1,6 +1,16 @@
 const { clipboard } = require('electron')
 const sanitizeInput = require('./sanitizeShellInput')
 
+const isPasting = e => {
+  const isDarwin = process.platform === "darwin";
+  const key = e.which || e.keyCode; // keyCode detection
+  const ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+  if (isDarwin) {
+    return e.metaKey && key === 86;
+  }
+  return key == 86 && ctrl;
+};
+
 exports.decorateTerm = (Term, { React }) => {
   return class extends React.Component {
     constructor (props, context) {
@@ -16,10 +26,7 @@ exports.decorateTerm = (Term, { React }) => {
       const pastingHandler = [ 'keydown', (e) => {
         const terminal = term.keyboard.terminal
 
-        const key = e.which || e.keyCode; // keyCode detection
-        const ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
-
-        if ( key == 86 && ctrl ) {
+        if ( isPasting(e) ) {
           const rawClipboard = clipboard.readText()
 
           let sanitizedClipboard
