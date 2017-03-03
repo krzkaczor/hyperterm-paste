@@ -3,8 +3,8 @@ const sanitizeInput = require('./sanitizeShellInput')
 
 const isPasting = e => {
   const isDarwin = process.platform === "darwin";
-  const key = e.which || e.keyCode; // keyCode detection
-  const ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+  const key = e.keyCode; // keyCode detection
+  const ctrl = e.ctrlKey ? e.ctrlKey : false; // ctrl detection
   if (isDarwin) {
     return e.metaKey && key === 86;
   }
