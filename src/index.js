@@ -16,7 +16,10 @@ exports.decorateTerm = (Term, { React }) => {
       const pastingHandler = [ 'keydown', (e) => {
         const terminal = term.keyboard.terminal
 
-        if (e.metaKey && e.keyCode === 86) {
+        const key = e.which || e.keyCode; // keyCode detection
+        const ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+
+        if ( key == 86 && ctrl ) {
           const rawClipboard = clipboard.readText()
 
           let sanitizedClipboard
