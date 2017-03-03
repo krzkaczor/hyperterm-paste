@@ -4,11 +4,10 @@ const sanitizeInput = require('./sanitizeShellInput')
 const isPasting = e => {
   const isDarwin = process.platform === "darwin";
   const key = e.keyCode; // keyCode detection
-  const ctrl = e.ctrlKey ? e.ctrlKey : false; // ctrl detection
   if (isDarwin) {
     return e.metaKey && key === 86;
   }
-  return key == 86 && ctrl;
+  return key == 86 && e.ctrlKey;
 };
 
 exports.decorateTerm = (Term, { React }) => {
