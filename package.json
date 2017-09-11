@@ -1,6 +1,6 @@
 {
   "name": "hyperterm-paste",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Makes pasting into hyperterm safe",
   "main": "src/index.js",
   "scripts": {
