@@ -50,6 +50,5 @@ exports.decorateTerm = (Term, { React }) => {
         onTerminal: this._onTerminal
       }))
     }
-
   }
 }
