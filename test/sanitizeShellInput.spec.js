@@ -24,9 +24,11 @@ describe('Sanitize shell input', function () {
 
   it('should delete trailing new lines', function () {
     expect(sanitizeShellInput(' test\n')).to.be.eq('test')
+    expect(sanitizeShellInput(' test\r\n')).to.be.eq('test')
   })
 
   it('should join multiline inputs', function () {
     expect(sanitizeShellInput(' test\ntest2')).to.be.eq('test && test2')
+    expect(sanitizeShellInput(' test\r\ntest2')).to.be.eq('test && test2')
   })
 })
