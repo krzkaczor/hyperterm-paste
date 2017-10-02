@@ -31,4 +31,8 @@ describe('Sanitize shell input', function () {
     expect(sanitizeShellInput(' test\ntest2')).to.be.eq('test && test2')
     expect(sanitizeShellInput(' test\r\ntest2')).to.be.eq('test && test2')
   })
+
+  it('should join multiline inputs with custom separator', function () {
+    expect(sanitizeShellInput(' test\ntest2', ' & ')).to.be.eq('test & test2')
+  })
 })

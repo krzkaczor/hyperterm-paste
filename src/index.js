@@ -10,6 +10,15 @@ const isPasting = e => {
   return key === 86 && e.ctrlKey
 }
 
+const getSeparator = config => {
+  if (!config) return // sometimes global config itself is not defined :(
+
+  const configInstance = config.getConfig()
+  if (!configInstance.env) return
+
+  return configInstance.env.HYPER_PASTE_SEPARATOR
+}
+
 exports.decorateTerm = (Term, { React }) => {
   return class extends React.Component {
     constructor (props, context) {
@@ -22,6 +31,8 @@ exports.decorateTerm = (Term, { React }) => {
 
       term.uninstallKeyboard()
 
+      const customSeparator = getSeparator(config)
+
       const pastingHandler = [ 'keydown', (e) => {
         const terminal = term.keyboard.terminal
 
@@ -30,7 +41,7 @@ exports.decorateTerm = (Term, { React }) => {
 
           let sanitizedClipboard
           if (!e.shiftKey) {
-            sanitizedClipboard = sanitizeInput(rawClipboard)
+            sanitizedClipboard = sanitizeInput(rawClipboard, customSeparator)
           } else {
             sanitizedClipboard = rawClipboard
           }
