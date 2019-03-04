@@ -9,7 +9,7 @@ Makes pasting into hyperterm safe and easy
 ![Pasting into hyperterm](https://raw.githubusercontent.com/krzkaczor/hyperterm-paste/master/demo.gif)
 
 ```
-hpm install hyperterm-paste
+npm install hyperterm-paste
 ```
 
 ### Description
